@@ -1,0 +1,1587 @@
+{
+	"info": {
+		"_postman_id": "d96ac3ad-71b7-4ca3-9165-5941735dca80",
+		"name": "path-finder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "10560509"
+	},
+	"item": [
+		{
+			"name": "Transportation",
+			"item": [
+				{
+					"name": "search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"originLocation\": {\r\n        \"locationCode\": \"DIY\"\r\n    },\r\n        \"destinationLocation\": {\r\n        \"locationCode\": \"KECI\"\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/transportation/search"
+					},
+					"response": [
+						{
+							"name": "search",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"destinationLocation\": {\r\n            \"id\": 2,\r\n            \"name\": \"İstanbul Havalimanı\",\r\n            \"city\": \"İstanbul\",\r\n            \"locationCode\": \"IST\"\r\n        },\r\n    \"transportationType\": \"FLIGHT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/search"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jun 2025 15:41:08 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"originLocation\": {\n            \"id\": 1,\n            \"name\": \"İstanbul Havalimanı\",\n            \"city\": \"İstanbul\",\n            \"locationCode\": \"IST\"\n        },\n        \"destinationLocation\": {\n            \"id\": 2,\n            \"name\": \"İstanbul Havalimanı\",\n            \"city\": \"İstanbul\",\n            \"locationCode\": \"IST\"\n        },\n        \"transportationType\": \"FLIGHT\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 6,\r\n    \"transportationType\": \"FLIGHT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/transportation/save"
+					},
+					"response": [
+						{
+							"name": "save - invalid request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"originLocationId\": 1,\r\n    \"transportationType\": \"FLIGHT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/save"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:49:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"destinationLocationId required\"\n}"
+						},
+						{
+							"name": "save",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 6,\r\n    \"transportationType\": \"FLIGHT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/save"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:50:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 14,\n    \"originLocation\": {\n        \"id\": 1,\n        \"name\": null,\n        \"city\": null,\n        \"locationCode\": null\n    },\n    \"destinationLocation\": {\n        \"id\": 6,\n        \"name\": null,\n        \"city\": null,\n        \"locationCode\": null\n    },\n    \"transportationType\": \"FLIGHT\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 2,\r\n    \"transportationType\": \"FLIGHT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/transportation/update"
+					},
+					"response": [
+						{
+							"name": "update - invalid request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 2,\r\n    \"transportationType\": \"FLIGHT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/update"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:56:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"id required\"\n}"
+						},
+						{
+							"name": "update - invalid request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/update"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:56:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"transportationType required\"\n}"
+						},
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 2,\r\n    \"transportationType\": \"FLIGHT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/update"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:56:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"originLocation\": {\n        \"id\": 1,\n        \"name\": \"İstanbul2 Havalimanı\",\n        \"city\": \"İstanbul2\",\n        \"locationCode\": \"IST2\"\n    },\n    \"destinationLocation\": {\n        \"id\": 2,\n        \"name\": \"Bakırköy\",\n        \"city\": \"İstanbul\",\n        \"locationCode\": \"BAKIR\"\n    },\n    \"transportationType\": \"FLIGHT\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path-finder-url}}/transportation/get-by-id?id=12",
+							"host": [
+								"{{path-finder-url}}"
+							],
+							"path": [
+								"transportation",
+								"get-by-id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get by id - record not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path-finder-url}}/transportation/get-by-id?id=110",
+									"host": [
+										"{{path-finder-url}}"
+									],
+									"path": [
+										"transportation",
+										"get-by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "110"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:57:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": null,\n    \"originLocation\": null,\n    \"destinationLocation\": null,\n    \"transportationType\": null\n}"
+						},
+						{
+							"name": "get by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path-finder-url}}/transportation/get-by-id?id=12",
+									"host": [
+										"{{path-finder-url}}"
+									],
+									"path": [
+										"transportation",
+										"get-by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:57:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 12,\n    \"originLocation\": {\n        \"id\": 8,\n        \"name\": \"Diyarbakır Havalimanı\",\n        \"city\": \"Diyarbakır\",\n        \"locationCode\": \"DIY\"\n    },\n    \"destinationLocation\": {\n        \"id\": 6,\n        \"name\": \"Kaçiören\",\n        \"city\": \"Keçiören\",\n        \"locationCode\": \"KECI\"\n    },\n    \"transportationType\": \"SUBWAY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete transportation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/transportation/delete"
+					},
+					"response": [
+						{
+							"name": "delete by id",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/delete"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:57:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						},
+						{
+							"name": "delete by id - invalid request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/transportation/delete"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:57:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"id required\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "Save Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adana\",\r\n    \"city\": \"Adana\",\r\n    \"locationCode\": \"ADN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/location/save"
+					},
+					"response": [
+						{
+							"name": "Save Location - invalid request body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Adana\",\r\n    \"locationCode\": \"ADN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/save"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:49:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"city required\"\n}"
+						},
+						{
+							"name": "Save Location",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Adana\",\r\n    \"city\": \"Adana\",\r\n    \"locationCode\": \"ADN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/save"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:49:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 9,\n    \"name\": \"Adana\",\n    \"city\": \"Adana\",\n    \"locationCode\": \"ADN\"\n}"
+						},
+						{
+							"name": "Save Location - db constraint violation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Adana\",\r\n    \"city\": \"Adana\",\r\n    \"locationCode\": \"ADN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/save"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:58:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"Request caused db constraint violation error!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"İstanbul2 Havalimanı\",\r\n    \"city\": \"İstanbul2\",\r\n    \"locationCode\": \"IST2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/location/update"
+					},
+					"response": [
+						{
+							"name": "Update Location - when id not provided",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"İstanbul2 Havalimanı\",\r\n    \"city\": \"İstanbul2\",\r\n    \"locationCode\": \"IST2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/update"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:50:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"id required\"\n}"
+						},
+						{
+							"name": "Update Location - invalid request body",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"İstanbul2 Havalimanı\",\r\n    \"locationCode\": \"IST2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/update"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:55:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"city required\"\n}"
+						},
+						{
+							"name": "Update Location",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"İstanbul2 Havalimanı\",\r\n    \"city\": \"İstanbul2\",\r\n    \"locationCode\": \"IST2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/update"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:55:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"İstanbul2 Havalimanı\",\n    \"city\": \"İstanbul2\",\n    \"locationCode\": \"IST2\"\n}"
+						}
+					]
+				},
+				{
+					"name": "search Request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"locationCode\": \"IST\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/location/search"
+					},
+					"response": [
+						{
+							"name": "search Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"locationCode\": \"IST\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/search"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:37:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"İstanbul Havalimanı\",\n            \"city\": \"İstanbul\",\n            \"locationCode\": \"IST\"\n        }\n    ],\n    \"totalCount\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{path-finder-url}}/location/get-by-id?id=1",
+							"host": [
+								"{{path-finder-url}}"
+							],
+							"path": [
+								"location",
+								"get-by-id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get by id - successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path-finder-url}}/location/get-by-id?id=1",
+									"host": [
+										"{{path-finder-url}}"
+									],
+									"path": [
+										"location",
+										"get-by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:31:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"İstanbul Havalimanı\",\n    \"city\": \"İstanbul\",\n    \"locationCode\": \"IST\"\n}"
+						},
+						{
+							"name": "get by id - record not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{path-finder-url}}/location/get-by-id?id=11120",
+									"host": [
+										"{{path-finder-url}}"
+									],
+									"path": [
+										"location",
+										"get-by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11120"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:32:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": null,\n    \"name\": null,\n    \"city\": null,\n    \"locationCode\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "delete lcoation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/location/delete"
+					},
+					"response": [
+						{
+							"name": "delete by id - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/delete"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:32:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						},
+						{
+							"name": "delete by id - when id is null",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/location/delete"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jun 2025 10:37:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "false"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Route",
+			"item": [
+				{
+					"name": "search route",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"originLocationId\": 2,\r\n    \"destinationLocationId\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{path-finder-url}}/route/search"
+					},
+					"response": [
+						{
+							"name": "search route - non-flight->flight->non-flight",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"originLocationId\": 2,\r\n    \"destinationLocationId\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/route/search"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 22:05:42 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"firstSegment\": {\n            \"id\": 1,\n            \"originName\": \"Bakırköy\",\n            \"destinationName\": \"İstanbul Havalimanı\",\n            \"transportationType\": \"SUBWAY\"\n        },\n        \"secondSegment\": {\n            \"id\": 3,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Antalya Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"thirdSegment\": {\n            \"id\": 7,\n            \"originName\": \"Antalya Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"BUS\"\n        }\n    },\n    {\n        \"firstSegment\": {\n            \"id\": 1,\n            \"originName\": \"Bakırköy\",\n            \"destinationName\": \"İstanbul Havalimanı\",\n            \"transportationType\": \"SUBWAY\"\n        },\n        \"secondSegment\": {\n            \"id\": 4,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Ankara Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"thirdSegment\": {\n            \"id\": 8,\n            \"originName\": \"Ankara Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"UBER\"\n        }\n    },\n    {\n        \"firstSegment\": {\n            \"id\": 1,\n            \"originName\": \"Bakırköy\",\n            \"destinationName\": \"İstanbul Havalimanı\",\n            \"transportationType\": \"SUBWAY\"\n        },\n        \"secondSegment\": {\n            \"id\": 5,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Amasya Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"thirdSegment\": {\n            \"id\": 9,\n            \"originName\": \"Amasya Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"BUS\"\n        }\n    },\n    {\n        \"firstSegment\": {\n            \"id\": 1,\n            \"originName\": \"Bakırköy\",\n            \"destinationName\": \"İstanbul Havalimanı\",\n            \"transportationType\": \"SUBWAY\"\n        },\n        \"secondSegment\": {\n            \"id\": 6,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Diyarbakır Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"thirdSegment\": {\n            \"id\": 12,\n            \"originName\": \"Diyarbakır Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"SUBWAY\"\n        }\n    }\n]"
+						},
+						{
+							"name": "search route - only flight",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/route/search"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 22:06:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"firstSegment\": {\n            \"id\": 4,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Ankara Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"secondSegment\": null,\n        \"thirdSegment\": null\n    }\n]"
+						},
+						{
+							"name": "search route - flight -> non-flight",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"originLocationId\": 1,\r\n    \"destinationLocationId\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/route/search"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 22:06:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"firstSegment\": {\n            \"id\": 3,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Antalya Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"secondSegment\": {\n            \"id\": 7,\n            \"originName\": \"Antalya Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"BUS\"\n        },\n        \"thirdSegment\": null\n    },\n    {\n        \"firstSegment\": {\n            \"id\": 4,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Ankara Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"secondSegment\": {\n            \"id\": 8,\n            \"originName\": \"Ankara Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"UBER\"\n        },\n        \"thirdSegment\": null\n    },\n    {\n        \"firstSegment\": {\n            \"id\": 5,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Amasya Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"secondSegment\": {\n            \"id\": 9,\n            \"originName\": \"Amasya Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"BUS\"\n        },\n        \"thirdSegment\": null\n    },\n    {\n        \"firstSegment\": {\n            \"id\": 6,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Diyarbakır Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"secondSegment\": {\n            \"id\": 12,\n            \"originName\": \"Diyarbakır Havalimanı\",\n            \"destinationName\": \"Kaçiören\",\n            \"transportationType\": \"SUBWAY\"\n        },\n        \"thirdSegment\": null\n    }\n]"
+						},
+						{
+							"name": "search route - non-flight -> flight",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"originLocationId\": 2,\r\n    \"destinationLocationId\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{path-finder-url}}/route/search"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Jun 2025 22:07:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"firstSegment\": {\n            \"id\": 1,\n            \"originName\": \"Bakırköy\",\n            \"destinationName\": \"İstanbul Havalimanı\",\n            \"transportationType\": \"SUBWAY\"\n        },\n        \"secondSegment\": {\n            \"id\": 4,\n            \"originName\": \"İstanbul Havalimanı\",\n            \"destinationName\": \"Ankara Havalimanı\",\n            \"transportationType\": \"FLIGHT\"\n        },\n        \"thirdSegment\": null\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}
