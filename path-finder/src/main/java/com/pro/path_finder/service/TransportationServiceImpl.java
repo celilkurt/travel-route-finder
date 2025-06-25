@@ -7,8 +7,12 @@ import com.pro.path_finder.exception.BusinessException;
 import com.pro.path_finder.mapper.TransportationMapper;
 import com.pro.path_finder.request.TransportationSaveRequest;
 import com.pro.path_finder.request.TransportationSearchRequest;
+import com.pro.path_finder.request.TransportationUpdateRequest;
+import com.pro.path_finder.response.TransportationSearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +27,11 @@ public class TransportationServiceImpl implements TransportationService {
     private TransportationMapper mapper;
 
     @Override
-    public List<TransportationDTO> search(TransportationSearchRequest request) {
+    public TransportationSearchResponse search(TransportationSearchRequest request) {
 
-        return mapper.entityListToDTOList(repository.findAll(Example.of(mapper.searchRequestToEntity(request)), Pageable.ofSize(200)).stream().toList());
+        Page<Transportation> transportationPage = repository.findAll(Example.of(mapper.searchRequestToEntity(request)), PageRequest.of(request.getPageNumber(), request.getPageSize()));
+
+        return new TransportationSearchResponse(mapper.entityListToDTOList(transportationPage.stream().toList()), transportationPage.getTotalElements());
     }
 
     @Override
@@ -41,19 +47,9 @@ public class TransportationServiceImpl implements TransportationService {
     }
 
     @Override
-    public TransportationDTO update(TransportationSaveRequest saveRequest) {
+    public TransportationDTO update(TransportationUpdateRequest request) {
 
-        checkUpdateRequest(saveRequest);
-        return mapper.entityToDTO(repository.save(mapper.saveRequestToEntity(saveRequest)));
-    }
-
-    protected void checkUpdateRequest(TransportationSaveRequest saveRequest) {
-
-        if (saveRequest.getId() == null) {
-            throw new BusinessException("Id cannot be null!");
-        } else if (!repository.existsById(saveRequest.getId())) {
-            throw new BusinessException("Record not found by id!");
-        }
+        return mapper.entityToDTO(repository.save(mapper.updateRequestToEntity(request)));
     }
 
     @Override

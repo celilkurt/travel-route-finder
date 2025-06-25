@@ -13,26 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Repository
 public class RouteRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<RouteRecord> getRoutes(Long origId, Long destId) {
+    public List<RouteRecord> getRoutes(Long originId, Long destinationId) {
 
         List<RouteRecord> routes = new ArrayList<>();
 
-        routes.addAll(getOneSegmentFlightRoutes(origId, destId));
-        routes.addAll(findThreeSegmentTransportationDetails(origId, destId));
-        routes.addAll(findTwoSegmentRoutes(origId, destId, false));
-        routes.addAll(findTwoSegmentRoutes(origId, destId, true));
+        routes.addAll(getOneSegmentFlightRoutes(originId, destinationId));
+        routes.addAll(findThreeSegmentTransportationDetails(originId, destinationId));
+        routes.addAll(findTwoSegmentRoutes(originId, destinationId, false));
+        routes.addAll(findTwoSegmentRoutes(originId, destinationId, true));
 
         return routes;
     }
 
     protected List<RouteRecord> findThreeSegmentTransportationDetails(Long initialOrigId, Long finalDestId) {
+
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<RouteRecord> query = cb.createQuery(RouteRecord.class);
 
@@ -93,6 +93,7 @@ public class RouteRepository {
     }
 
     public List<RouteRecord> getOneSegmentFlightRoutes(Long origId, Long destId) {
+
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<TransportationRouteDTO> query = cb.createQuery(TransportationRouteDTO.class);
 

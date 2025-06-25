@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TransportationSearchRequest {
+public class TransportationSearchRequest extends SearchRequestBase {
 
     private LocationDTO originLocation;
     private LocationDTO destinationLocation;

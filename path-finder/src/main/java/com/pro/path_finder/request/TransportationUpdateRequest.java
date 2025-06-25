@@ -7,8 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TransportationSaveRequest {
+public class TransportationUpdateRequest {
 
+    @NotNull(message = "id required")
+    private Long id;
     @NotNull(message = "originLocationId required")
     private Long originLocationId;
     @NotNull(message = "destinationLocationId required")

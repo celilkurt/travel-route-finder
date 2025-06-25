@@ -7,11 +7,11 @@ import com.pro.path_finder.exception.BusinessException;
 import com.pro.path_finder.mapper.LocationMapper;
 import com.pro.path_finder.request.LocationSaveRequest;
 import com.pro.path_finder.request.LocationSearchRequest;
+import com.pro.path_finder.request.LocationUpdateRequest;
+import com.pro.path_finder.response.LocationSearchResponse;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,9 +36,10 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public List<LocationDTO> search(LocationSearchRequest request) {
+    public LocationSearchResponse search(LocationSearchRequest request) {
 
-        return mapper.entityListToDTOList(repository.findAll(Example.of(mapper.searchRequestToEntity(request), getMatcher()), Pageable.ofSize(200)).stream().toList());
+        Page<Location> locationPage = repository.findAll(Example.of(mapper.searchRequestToEntity(request), getMatcher()), PageRequest.of(request.getPageNumber(), request.getPageSize()));
+        return new LocationSearchResponse(mapper.entityListToDTOList(locationPage.stream().toList()), locationPage.getTotalElements());
     }
 
     @Override
@@ -54,19 +55,9 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public LocationDTO update(LocationSaveRequest saveRequest) {
+    public LocationDTO update(LocationUpdateRequest request) {
 
-        checkUpdateRequest(saveRequest);
-        return mapper.entityToDTO(repository.save(mapper.saveRequestToEntity(saveRequest)));
-    }
-
-    protected void checkUpdateRequest(LocationSaveRequest saveRequest) {
-
-        if (saveRequest.getId() == null) {
-            throw new BusinessException("Id cannot be null!");
-        } else if (!repository.existsById(saveRequest.getId())) {
-            throw new BusinessException("Record not found by id!");
-        }
+        return mapper.entityToDTO(repository.save(mapper.updateRequestToEntity(request)));
     }
 
     @Override

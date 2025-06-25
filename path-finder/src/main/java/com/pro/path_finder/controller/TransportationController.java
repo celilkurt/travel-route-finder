@@ -1,9 +1,14 @@
 package com.pro.path_finder.controller;
 
+import com.pro.path_finder.db.dao.TransportationType;
 import com.pro.path_finder.dto.TransportationDTO;
+import com.pro.path_finder.request.TransportationDeleteRequest;
 import com.pro.path_finder.request.TransportationSaveRequest;
 import com.pro.path_finder.request.TransportationSearchRequest;
+import com.pro.path_finder.request.TransportationUpdateRequest;
+import com.pro.path_finder.response.TransportationSearchResponse;
 import com.pro.path_finder.service.TransportationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,34 +22,42 @@ public class TransportationController {
     @Autowired
     private TransportationService transportationService;
 
-    @GetMapping("/search")
-    public ResponseEntity<List<TransportationDTO>> getTransportations(@RequestBody TransportationSearchRequest request) {
+    @PostMapping("/search")
+    public ResponseEntity<TransportationSearchResponse> getTransportations(@RequestBody TransportationSearchRequest request) {
 
         return ResponseEntity.ok(transportationService.search(request));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TransportationDTO> getById(@PathVariable("id") long id) {
+    @GetMapping("/get-by-id")
+    public ResponseEntity<TransportationDTO> getById(@RequestParam("id") long id) {
 
         return ResponseEntity.ok(transportationService.getById(id));
     }
 
     @PostMapping("/save")
-    public ResponseEntity<TransportationDTO> save(@RequestBody TransportationSaveRequest saveRequest) {
+    public ResponseEntity<TransportationDTO> save(@RequestBody @Valid TransportationSaveRequest saveRequest) {
 
         return ResponseEntity.ok(transportationService.save(saveRequest));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable("id") long id) {
+    @PostMapping("/delete")
+    public ResponseEntity<Boolean> delete(@RequestBody @Valid TransportationDeleteRequest request) {
 
-        transportationService.delete(id);
+        if (request.getId() == null) {
+            return ResponseEntity.badRequest().body(false);
+        }
+        transportationService.delete(request.getId());
         return ResponseEntity.ok(true);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<TransportationDTO> update(@RequestBody TransportationSaveRequest request) {
+    public ResponseEntity<TransportationDTO> update(@RequestBody @Valid TransportationUpdateRequest request) {
 
         return ResponseEntity.ok(transportationService.update(request));
+    }
+
+    @GetMapping("/transportation-type")
+    public ResponseEntity<List<String>> getTransportationType() {
+        return ResponseEntity.ok(TransportationType.TRANSPORTATION_TYPE_NAME_LIST);
     }
 }

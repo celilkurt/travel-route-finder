@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LocationSearchRequest {
+public class LocationSearchRequest extends SearchRequestBase {
 
     private String name;
-    private String City;
-    private String LocationCode;
+    private String city;
+    private String locationCode;
 }
